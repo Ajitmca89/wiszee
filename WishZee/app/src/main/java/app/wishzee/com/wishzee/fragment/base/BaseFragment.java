@@ -65,16 +65,4 @@ public abstract class BaseFragment extends DialogFragment {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-
-    public static void showFragment(BaseFragment baseFragment,  FragmentActivity fragmentActivity){
-
-
-        FragmentTransaction transact=getSupportFragmentManager().beginTransaction();
-
-        transact.add(R.id.frameContainer, lastSMSFragment, "lastSMSFragment");
-
-        transact.commit();
-
-    }
-
 }
