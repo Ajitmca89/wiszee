@@ -5,7 +5,7 @@ package app.wishzee.com.wishzee.apiparsing;
  */
 public class ApiBaseData {
     private String msg;
-    private Boolean status;
+    private String status;
 
     public String getMsg() {
         return msg;
@@ -15,11 +15,11 @@ public class ApiBaseData {
         this.msg = msg;
     }
 
-    public Boolean getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }

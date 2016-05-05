@@ -26,14 +26,16 @@ public class WishDetailResponseObject extends ApiBaseData {
         this.wishDetailsArrayList = wishDetailsArrayList;
     }
 
-    public  void responseParseMethod(Object response){
-        WishDetailResponseObject wishDetailResponseObject = new WishDetailResponseObject();
+    WishDetailResponseObject wishDetailResponseObject;
+
+    public void responseParseMethod(Object response) {
+        wishDetailResponseObject = new WishDetailResponseObject();
         try {
             JSONObject jsonObject = new JSONObject(response.toString());
             wishDetailResponseObject.setMsg(jsonObject.optString("msg"));
-            wishDetailResponseObject.setStatus(jsonObject.optBoolean("status"));
-            if (wishDetailResponseObject.getStatus().equals("true"))
-            wishDetailResponseObject.setWishDetailsArrayList(getWishDetailInMethod(jsonObject.optJSONArray("wishDetail")));
+            wishDetailResponseObject.setStatus(jsonObject.optString("status"));
+            if (jsonObject.optString("status").equals("true"))
+                wishDetailResponseObject.setWishDetailsArrayList(getWishDetailInMethod(jsonObject.optJSONArray("wishDetail")));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -42,31 +44,47 @@ public class WishDetailResponseObject extends ApiBaseData {
     }
 
     private ArrayList<WishDetails> getWishDetailInMethod(JSONArray jsonArray) {
-        ArrayList<WishDetails> wishDetailsArrayList = new ArrayList<>();
-        WishDetails wishDetails;
-        for (int i = 0; i < jsonArray.length(); i++){
-            wishDetails = new WishDetails();
+        wishDetailsArrayList = new ArrayList<>();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            WishDetails wishDetails = new WishDetails();
             JSONObject jsonObject = jsonArray.optJSONObject(i);
-            wishDetails.setPid(jsonObject.optString("pid"));
-            wishDetails.setDescription(jsonObject.optString("description"));
-            wishDetails.setPostType(jsonObject.optString("post_type"));
-            wishDetails.setType(jsonObject.optString("type"));
-            wishDetails.setSharePostId(jsonObject.optString("sharePostId"));
-            wishDetails.setFriendId(jsonObject.optString("friend_id"));
-            wishDetails.setCreateDate(jsonObject.optString("createDate"));
-            wishDetails.setPostDate(jsonObject.optString("postDate"));
-            wishDetails.setShare(jsonObject.optString("share"));
-            wishDetails.setWow(jsonObject.optString("wow"));
-            wishDetails.setWowStatus(jsonObject.optString("wowStatus"));
-            wishDetails.setSilly(jsonObject.optString("silly"));
-            wishDetails.setSillyStatus(jsonObject.optString("sillyStatus"));
-            wishDetails.setComment(jsonObject.optString("comment"));
-            wishDetails.setFulfill(jsonObject.optString("fulfill"));
-            wishDetails.setUserDetails(getUserDetailsMethod(jsonObject.optJSONObject("userDetail")));
-            wishDetails.setNotificationDetails(getNotificationDetailsMethod(jsonObject.optJSONObject("notificationDetail")));
-            wishDetails.setPostImageArrayList(getPostImageMethod(jsonObject.optJSONArray("postimage")));
-
-            wishDetailsArrayList.add(wishDetails);
+            if (jsonObject.has("pid"))
+                wishDetails.setPid(jsonObject.optString("pid"));
+            if (jsonObject.has("description"))
+                wishDetails.setDescription(jsonObject.optString("description"));
+            if (jsonObject.has("post_type"))
+                wishDetails.setPostType(jsonObject.optString("post_type"));
+            if (jsonObject.has("type"))
+                wishDetails.setType(jsonObject.optString("type"));
+            if (jsonObject.has("sharePostId"))
+                wishDetails.setSharePostId(jsonObject.optString("sharePostId"));
+            if (jsonObject.has("friend_id"))
+                wishDetails.setFriendId(jsonObject.optString("friend_id"));
+            if (jsonObject.has("createDate"))
+                wishDetails.setCreateDate(jsonObject.optString("createDate"));
+            if (jsonObject.has("postDate"))
+                wishDetails.setPostDate(jsonObject.optString("postDate"));
+            if (jsonObject.has("share"))
+                wishDetails.setShare(jsonObject.optString("share"));
+            if (jsonObject.has("wow"))
+                wishDetails.setWow(jsonObject.optString("wow"));
+            if (jsonObject.has("wowStatus"))
+                wishDetails.setWowStatus(jsonObject.optString("wowStatus"));
+            if (jsonObject.has("silly"))
+                wishDetails.setSilly(jsonObject.optString("silly"));
+            if (jsonObject.has("sillyStatus"))
+                wishDetails.setSillyStatus(jsonObject.optString("sillyStatus"));
+            if (jsonObject.has("comment"))
+                wishDetails.setComment(jsonObject.optString("comment"));
+            if (jsonObject.has("fulfill"))
+                wishDetails.setFulfill(jsonObject.optString("fulfill"));
+            if (jsonObject.has("userDetail"))
+                wishDetails.setUserDetails(getUserDetailsMethod(jsonObject.optJSONObject("userDetail")));
+            if (jsonObject.has("notificationDetail"))
+                wishDetails.setNotificationDetails(getNotificationDetailsMethod(jsonObject.optJSONObject("notificationDetail")));
+            if (jsonObject.has("postimage")) {
+                wishDetails.setPostImageArrayList(getPostImageMethod(jsonObject.optJSONArray("postimage")));
+            }
         }
         return wishDetailsArrayList;
     }
@@ -74,13 +92,17 @@ public class WishDetailResponseObject extends ApiBaseData {
     private ArrayList<PostImage> getPostImageMethod(JSONArray jsonArray) {
         ArrayList<PostImage> postImageArrayList = new ArrayList<>();
         PostImage postImage;
-        for (int i = 0; i < jsonArray.length(); i++){
+        for (int i = 0; i < jsonArray.length(); i++) {
             postImage = new PostImage();
             JSONObject jsonObject = jsonArray.optJSONObject(i);
-            postImage.setId(jsonObject.optString("id"));
-            postImage.setModuleId(jsonObject.optString("moduleId"));
-            postImage.setPostUrl(jsonObject.optString("posturl"));
-            postImage.setCreateDate(jsonObject.optString("createDate"));
+            if (jsonObject.has("id"))
+                postImage.setId(jsonObject.optString("id"));
+            if (jsonObject.has("moduleId"))
+                postImage.setModuleId(jsonObject.optString("moduleId"));
+            if (jsonObject.has("posturl"))
+                postImage.setPostUrl(jsonObject.optString("posturl"));
+            if (jsonObject.has("createDate"))
+                postImage.setCreateDate(jsonObject.optString("createDate"));
 
             postImageArrayList.add(postImage);
         }
@@ -89,25 +111,38 @@ public class WishDetailResponseObject extends ApiBaseData {
 
     private NotificationDetails getNotificationDetailsMethod(JSONObject jsonObject) {
         NotificationDetails notificationDetails = new NotificationDetails();
-        notificationDetails.setId(jsonObject.optString("id"));
-        notificationDetails.setType(jsonObject.optString("type"));
-        notificationDetails.setNotUid(jsonObject.optString("notUid"));
-        notificationDetails.setDescription(jsonObject.optString("description"));
-        notificationDetails.setModule(jsonObject.optString("module"));
-        notificationDetails.setInsertDate(jsonObject.optString("insertDate"));
-        notificationDetails.setReach(jsonObject.optString("reach"));
-        notificationDetails.setCheckStatus(jsonObject.optString("checkStatus"));
-        notificationDetails.setIdOth(jsonObject.optString("IdOth"));
-        notificationDetails.setStatus(jsonObject.optString("status"));
+        if (jsonObject.has("id"))
+            notificationDetails.setId(jsonObject.optString("id"));
+        if (jsonObject.has("type"))
+            notificationDetails.setType(jsonObject.optString("type"));
+        if (jsonObject.has("notUid"))
+            notificationDetails.setNotUid(jsonObject.optString("notUid"));
+        if (jsonObject.has("description"))
+            notificationDetails.setDescription(jsonObject.optString("description"));
+        if (jsonObject.has("module"))
+            notificationDetails.setModule(jsonObject.optString("module"));
+        if (jsonObject.has("insertDate"))
+            notificationDetails.setInsertDate(jsonObject.optString("insertDate"));
+        if (jsonObject.has("reach"))
+            notificationDetails.setReach(jsonObject.optString("reach"));
+        if (jsonObject.has("checkStatus"))
+            notificationDetails.setCheckStatus(jsonObject.optString("checkStatus"));
+        if (jsonObject.has("IdOth"))
+            notificationDetails.setIdOth(jsonObject.optString("IdOth"));
+        if (jsonObject.has("status"))
+            notificationDetails.setStatus(jsonObject.optString("status"));
 
         return notificationDetails;
     }
 
     private UserDetails getUserDetailsMethod(JSONObject jsonObject) {
         UserDetails userDetails = new UserDetails();
-        userDetails.setUid(jsonObject.optString("uid"));
-        userDetails.setFullName(jsonObject.optString("fullname"));
-        userDetails.setProfilePicUrl(jsonObject.optString("profile_pic_url"));
+        if (jsonObject.has("uid"))
+            userDetails.setUid(jsonObject.optString("uid"));
+        if (jsonObject.has("fullname"))
+            userDetails.setFullName(jsonObject.optString("fullname"));
+        if (jsonObject.has("profile_pic_url"))
+            userDetails.setProfilePicUrl(jsonObject.optString("profile_pic_url"));
 
         return userDetails;
     }
