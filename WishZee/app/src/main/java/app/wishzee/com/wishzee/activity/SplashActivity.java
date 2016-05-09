@@ -28,14 +28,14 @@ public class SplashActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutResourceId());
 
-       // recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         LinearLayoutManager layoutMangerDestination
                 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
-//        recyclerView.setLayoutManager(layoutMangerDestination);
+       recyclerView.setLayoutManager(layoutMangerDestination);
 
-        // 5. set item animator to DefaultAnimator
-        //recyclerView.setItemAnimator(new DefaultItemAnimator());
+         // set item animator to DefaultAnimator
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
     @Override
@@ -52,7 +52,7 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected int getLayoutResourceId() {
-        return R.layout.home_layout;
+        return R.layout.splash_layout;
     }
 
     @Override
@@ -69,9 +69,9 @@ public class SplashActivity extends BaseActivity {
         ArrayList list = wishDetailResponseObject.getWishDetailsArrayList();
 
         // 3. create an adapter
-       // mAdapter = new RecentWishListAdapter(list, this);
+        mAdapter = new RecentWishListAdapter(list, this);
         // 4. set adapter
-//        recyclerView.setAdapter(mAdapter);
+        recyclerView.setAdapter(mAdapter);
 
     }
 }

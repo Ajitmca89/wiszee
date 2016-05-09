@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 
 import org.json.JSONObject;
@@ -52,6 +54,10 @@ public abstract class BaseActivity extends AppCompatActivity implements Response
 
         jsonRequest.setTag(REQUEST_TAG);
 
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy(5000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
         mQueue.add(jsonRequest);
     }
 
@@ -62,4 +68,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Response
     @Override
     public void onErrorResponse(VolleyError error) {
     }
+
+
+
 }
