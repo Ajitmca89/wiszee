@@ -24,8 +24,8 @@ import app.wishzee.com.wishzee.R;
 
 
 /**
- * Created by Ankit on 7/22/2015.
- * used https://github.com/hdodenhof/CircleImageView
+ * Created by Ajit Gupta.
+ *
  */
 public class CircleImageView extends ImageView {
 

@@ -1,48 +1,51 @@
 package app.wishzee.com.wishzee.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
-
-import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
-
-
-import java.util.ArrayList;
+import android.os.Handler;
 
 import app.wishzee.com.wishzee.R;
-import app.wishzee.com.wishzee.apiparsing.recentapiparsing.WishDetailResponseObject;
-import app.wishzee.com.wishzee.recyclerview.RecentWishListAdapter;
 
 public class SplashActivity extends BaseActivity {
 
-    private RequestQueue mQueue;
+    //private RequestQueue mQueue;
     public static final String REQUEST_TAG = "SplashActivity";
-    private RecyclerView recyclerView;
-    RecentWishListAdapter mAdapter;
+   // private RecyclerView recyclerView;
+   // RecentWishListAdapter mAdapter;
+
+    // Splash screen timer
+    private static int SPLASH_TIME_OUT = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutResourceId());
 
-        recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent splashIntent = new Intent(SplashActivity.this, MainActivity.class);
+                startActivity(splashIntent);
+
+                finish();
+            }
+        },SPLASH_TIME_OUT);
+
+       /* recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         LinearLayoutManager layoutMangerDestination
                 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
        recyclerView.setLayoutManager(layoutMangerDestination);
 
          // set item animator to DefaultAnimator
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setItemAnimator(new DefaultItemAnimator());*/
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        String url = "http://www.intechub.com/webservice/postview.php?uid=153";
-        volleyRequestMethod(url);
+       // String url = "http://www.intechub.com/webservice/postview.php?uid=153";
+       // volleyRequestMethod(url);
     }
 
     @Override
@@ -52,10 +55,10 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected int getLayoutResourceId() {
-        return R.layout.splash_layout;
+        return R.layout.activity_splash;
     }
 
-    @Override
+    /*@Override
     public void onErrorResponse(VolleyError error) {
         Toast.makeText(SplashActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
     }
@@ -63,7 +66,7 @@ public class SplashActivity extends BaseActivity {
     @Override
     public void onResponse(Object response) {
 
-        WishDetailResponseObject wishDetailResponseObject = new WishDetailResponseObject();
+      *//*  WishDetailResponseObject wishDetailResponseObject = new WishDetailResponseObject();
         wishDetailResponseObject.responseParseMethod(response);
 
         ArrayList list = wishDetailResponseObject.getWishDetailsArrayList();
@@ -71,7 +74,7 @@ public class SplashActivity extends BaseActivity {
         // 3. create an adapter
         mAdapter = new RecentWishListAdapter(list, this);
         // 4. set adapter
-        recyclerView.setAdapter(mAdapter);
+        recyclerView.setAdapter(mAdapter);*//*
 
-    }
+    }*/
 }

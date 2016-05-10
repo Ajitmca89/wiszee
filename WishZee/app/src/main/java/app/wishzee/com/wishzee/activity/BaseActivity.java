@@ -8,7 +8,6 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 
 import org.json.JSONObject;
@@ -22,8 +21,6 @@ import app.wishzee.com.wishzee.volleycustomrequest.CustomVolleyRequestQueue;
 public abstract class BaseActivity extends AppCompatActivity implements Response.Listener, Response.ErrorListener {
 
     private RequestQueue mQueue;
-
-    public static final String REQUEST_TAG = "SplashActivity";
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
@@ -41,12 +38,9 @@ public abstract class BaseActivity extends AppCompatActivity implements Response
     @Override
     protected void onStop() {
         super.onStop();
-        if (mQueue != null) {
-            mQueue.cancelAll(REQUEST_TAG);
-        }
     }
 
-    protected void volleyRequestMethod(String url) {
+    protected void volleyRequestMethod(String url, final String REQUEST_TAG) {
         mQueue = CustomVolleyRequestQueue.getInstance(this.getApplicationContext())
                 .getRequestQueue();
 
@@ -61,6 +55,12 @@ public abstract class BaseActivity extends AppCompatActivity implements Response
         mQueue.add(jsonRequest);
     }
 
+    protected void cancelQueueMethod(final String REQUEST_TAG) {
+        if (mQueue != null) {
+            mQueue.cancelAll(REQUEST_TAG);
+        }
+    }
+
     @Override
     public void onResponse(Object response) {
     }
@@ -68,7 +68,6 @@ public abstract class BaseActivity extends AppCompatActivity implements Response
     @Override
     public void onErrorResponse(VolleyError error) {
     }
-
 
 
 }

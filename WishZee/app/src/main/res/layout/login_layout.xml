@@ -32,17 +32,30 @@
                 android:id="@+id/img_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:layout_marginBottom="1dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginTop="1dp"
                 android:background="@android:color/holo_blue_light"
                 android:src="@mipmap/ic_launcher" />
 
-            <EditText
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginLeft="8dp"
-                android:layout_toRightOf="@+id/img_user_name"
-                android:background="@android:color/white"
-                android:hint="User Name"
-                android:paddingLeft="16dp" />
+                android:layout_marginBottom="1dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginTop="1dp"
+                android:layout_toRightOf="@+id/img_user_name">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@android:color/white"
+                    android:hint="User Name"
+                    android:paddingLeft="16dp" />
+            </android.support.v7.widget.CardView>
+
         </RelativeLayout>
 
 
@@ -55,20 +68,33 @@
                 android:id="@+id/img_password"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:layout_marginBottom="1dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginTop="1dp"
                 android:background="@android:color/holo_blue_light"
                 android:src="@mipmap/ic_launcher" />
 
-            <EditText
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginLeft="8dp"
-                android:layout_toRightOf="@+id/img_password"
-                android:background="@android:color/white"
-                android:hint="Password"
-                android:paddingLeft="16dp" />
+                android:layout_marginBottom="1dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginTop="1dp"
+                android:layout_toRightOf="@+id/img_password">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@android:color/white"
+                    android:hint="Password"
+                    android:paddingLeft="16dp" />
+            </android.support.v7.widget.CardView>
         </RelativeLayout>
 
         <TextView
+            android:id="@+id/forgot_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -77,18 +103,40 @@
             android:textSize="16dp"
             android:textStyle="bold" />
 
-        <android.support.v7.widget.AppCompatButton
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/rounded_corner_signin"
-            android:paddingLeft="40dp"
-            android:paddingRight="40dp"
-            android:text="LOGIN"
-            android:textColor="@android:color/white"
-            android:textSize="16dp"
-            android:textStyle="bold" />
+            android:layout_marginTop="16dp">
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/rounded_corner_signin"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:text="LOGIN"
+                android:textColor="@android:color/white"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_sign_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/rounded_corner_signin"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:text="SIGN UP"
+                android:textColor="@android:color/white"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
