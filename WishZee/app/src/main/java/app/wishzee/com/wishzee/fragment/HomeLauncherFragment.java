@@ -14,6 +14,8 @@ import app.wishzee.com.wishzee.R;
  */
 public class HomeLauncherFragment extends BaseFragment implements View.OnClickListener{
 
+    private static final String LAUNCHERTAG = "HomeLauncherFragment";
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,8 +50,8 @@ public class HomeLauncherFragment extends BaseFragment implements View.OnClickLi
         BaseFragment fragment;
         switch (v.getId()){
             case R.id.btn_make_wish:
-                fragment = new HomeLauncherFragment();
-                callFragmentMethod(fragment, );
+                fragment = new MakeWishButtonFragment();
+                callFragmentMethod(fragment, LAUNCHERTAG);
                 break;
         }
     }
