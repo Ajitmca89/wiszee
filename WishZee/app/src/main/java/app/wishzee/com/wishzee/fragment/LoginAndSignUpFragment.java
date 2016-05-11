@@ -1,7 +1,5 @@
 package app.wishzee.com.wishzee.fragment;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -59,11 +57,11 @@ public class LoginAndSignUpFragment extends BaseFragment implements View.OnClick
         switch (v.getId()) {
             case R.id.rel_login:
                 baseFragment = new LoginFragment();
-                callFragmentMethod(baseFragment, Constants.LOGINANDSIGNUPTAG);
+                callFragmentMethod(baseFragment, Constants.LOGIN_AND_SIGN_UP_TAG);
                 break;
             case R.id.rel_sign_up:
                 baseFragment = new SignUpFragment();
-                callFragmentMethod(baseFragment, Constants.LOGINANDSIGNUPTAG);
+                callFragmentMethod(baseFragment, Constants.LOGIN_AND_SIGN_UP_TAG);
                 break;
         }
     }

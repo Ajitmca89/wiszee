@@ -51,7 +51,7 @@ public class HomeLauncherFragment extends BaseFragment implements View.OnClickLi
         switch (v.getId()){
             case R.id.btn_make_wish:
                 fragment = new MakeWishButtonFragment();
-                callFragmentMethod(fragment, Constants.LAUNCHERTAG);
+                callFragmentMethod(fragment, Constants.LAUNCHER_TAG);
                 break;
         }
     }

@@ -89,12 +89,12 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
 
             case R.id.btn_sign_up:
                 fragment = new SignUpFragment();
-                callFragmentMethod(fragment, Constants.LOGINTAG);
+                callFragmentMethod(fragment, Constants.LOGIN_TAG);
                 break;
 
             case R.id.forgot_password:
                 fragment = new ForgotPasswordFragment();
-                callFragmentMethod(fragment, Constants.LOGINTAG);
+                callFragmentMethod(fragment, Constants.LOGIN_TAG);
                 break;
         }
     }
@@ -135,7 +135,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
             }
 
         };
-        stringRequest.setTag(Constants.LOGINTAG);
+        stringRequest.setTag(Constants.LOGIN_TAG);
         requestQueue = Volley.newRequestQueue(getActivity());
         requestQueue.add(stringRequest);
     }
@@ -167,7 +167,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         if (status.equalsIgnoreCase("true")) {
             fragment = new HomeLauncherFragment();
             saveDataOnPreference(username, phone, gender, email, socialId, id);
-            callFragmentMethod(fragment, Constants.LOGINTAG);
+            callFragmentMethod(fragment, Constants.LOGIN_TAG);
         } else {
             if (!TextUtils.isEmpty(msg)) {
                 showDialogMethod(msg);
@@ -203,7 +203,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     public void onStop() {
         super.onStop();
         if (requestQueue != null) {
-            requestQueue.cancelAll(Constants.LOGINTAG);
+            requestQueue.cancelAll(Constants.LOGIN_TAG);
         }
     }
 }

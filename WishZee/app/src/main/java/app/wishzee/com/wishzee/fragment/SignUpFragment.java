@@ -148,22 +148,20 @@ public class SignUpFragment extends BaseFragment implements View.OnClickListener
             }
 
         };
-        stringRequest.setTag(Constants.REGISTRATIONAG);
+        stringRequest.setTag(Constants.REGISTRATION_TAG);
         requestQueue = Volley.newRequestQueue(getActivity());
         requestQueue.add(stringRequest);
     }
 
     private void responseImplement(String response) {
         JSONObject jsonObject = null;
-        String status = null, id = null, socialId = null, msg = null, username = null, phone = null, gender = null, email = null;
+        String status = null, userid = null, msg = null, username = null, phone = null, gender = null, email = null;
         try {
             jsonObject = new JSONObject(response);
             if (jsonObject.has("status"))
                 status = jsonObject.optString("status");
-            if (jsonObject.has("id"))
-                id = jsonObject.optString("id");
-            if (jsonObject.has("socialid"))
-                socialId = jsonObject.optString("socialid");
+            if (jsonObject.has("userid"))
+                userid = jsonObject.optString("userid");
             if (jsonObject.has("msg"))
                 msg = jsonObject.optString("msg");
             if (jsonObject.has("username"))
@@ -179,8 +177,9 @@ public class SignUpFragment extends BaseFragment implements View.OnClickListener
         }
         if (status.equalsIgnoreCase("true")) {
             fragment = new HomeLauncherFragment();
-            saveDataOnPreference(username, phone, gender, email, socialId, id);
-            callFragmentMethod(fragment, Constants.REGISTRATIONAG);
+            saveDataOnPreference(username, phone, gender, email, userid);
+            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+            callFragmentMethod(fragment, Constants.REGISTRATION_TAG);
         } else {
             if (!TextUtils.isEmpty(msg)) {
                 showDialogMethod(msg);
@@ -188,13 +187,12 @@ public class SignUpFragment extends BaseFragment implements View.OnClickListener
         }
     }
 
-    private void saveDataOnPreference(String username, String phone, String gender, String email, String socialId, String id) {
+    private void saveDataOnPreference(String username, String phone, String gender, String email, String userId) {
         SharedPreferencesManager.setUsername(getActivity(), username);
         SharedPreferencesManager.setPhone(getActivity(), phone);
         SharedPreferencesManager.setGender(getActivity(), gender);
         SharedPreferencesManager.setEmail(getActivity(), email);
-        SharedPreferencesManager.setSocialID(getActivity(), socialId);
-        SharedPreferencesManager.setID(getActivity(), id);
+        SharedPreferencesManager.setUserID(getActivity(), userId);
     }
 
     private boolean registerValidation(String fullName, String email, String password, String phone) {
@@ -210,7 +208,7 @@ public class SignUpFragment extends BaseFragment implements View.OnClickListener
             etPassword.setError("Please enter password more than 4 character");
             etPassword.requestFocus();
             return false;
-        } else if (phone.length() != 10 ) {
+        } else if (phone.length() != 10) {
             etPhone.setError("Please enter your 10 digit mobile number");
             etPhone.requestFocus();
             return false;
@@ -235,7 +233,7 @@ public class SignUpFragment extends BaseFragment implements View.OnClickListener
     public void onStop() {
         super.onStop();
         if (requestQueue != null) {
-            requestQueue.cancelAll(Constants.REGISTRATIONAG);
+            requestQueue.cancelAll(Constants.REGISTRATION_TAG);
         }
     }
 }
