@@ -8,13 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import app.wishzee.com.wishzee.R;
+import app.wishzee.com.wishzee.constant.Constants;
 
 /**
  * Created by Ajit Gupta on 5/10/2016.
  */
 public class HomeLauncherFragment extends BaseFragment implements View.OnClickListener{
 
-    private static final String LAUNCHERTAG = "HomeLauncherFragment";
 
     @Nullable
     @Override
@@ -51,7 +51,7 @@ public class HomeLauncherFragment extends BaseFragment implements View.OnClickLi
         switch (v.getId()){
             case R.id.btn_make_wish:
                 fragment = new MakeWishButtonFragment();
-                callFragmentMethod(fragment, LAUNCHERTAG);
+                callFragmentMethod(fragment, Constants.LAUNCHERTAG);
                 break;
         }
     }

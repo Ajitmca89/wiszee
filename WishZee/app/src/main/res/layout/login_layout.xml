@@ -49,11 +49,15 @@
                 android:layout_toRightOf="@+id/img_user_name">
 
                 <EditText
+                    android:id="@+id/et_username"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@android:color/white"
                     android:hint="User Name"
-                    android:paddingLeft="16dp" />
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:paddingLeft="16dp"
+                    android:singleLine="true" />
             </android.support.v7.widget.CardView>
 
         </RelativeLayout>
@@ -85,11 +89,15 @@
                 android:layout_toRightOf="@+id/img_password">
 
                 <EditText
+                    android:id="@+id/et_password"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@android:color/white"
                     android:hint="Password"
-                    android:paddingLeft="16dp" />
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:paddingLeft="16dp"
+                    android:singleLine="true" />
             </android.support.v7.widget.CardView>
         </RelativeLayout>
 

@@ -10,13 +10,13 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import app.wishzee.com.wishzee.R;
+import app.wishzee.com.wishzee.constant.Constants;
 
 /**
  * Created by Ajit Gupta on 5/10/2016.
  */
 public class LoginAndSignUpFragment extends BaseFragment implements View.OnClickListener {
 
-    private final static String LOGINANDSIGNUPTAG = "LoginAndSignUpFragment";
     private RelativeLayout relLogin, relSignUp;
 
     @Nullable
@@ -55,15 +55,15 @@ public class LoginAndSignUpFragment extends BaseFragment implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        BaseFragment fr;
+        BaseFragment baseFragment;
         switch (v.getId()) {
             case R.id.rel_login:
-                fr = new LoginFragment();
-                callFragmentMethod(fr, LOGINANDSIGNUPTAG);
+                baseFragment = new LoginFragment();
+                callFragmentMethod(baseFragment, Constants.LOGINANDSIGNUPTAG);
                 break;
             case R.id.rel_sign_up:
-                fr = new SignUpFragment();
-                callFragmentMethod(fr, LOGINANDSIGNUPTAG);
+                baseFragment = new SignUpFragment();
+                callFragmentMethod(baseFragment, Constants.LOGINANDSIGNUPTAG);
                 break;
         }
     }

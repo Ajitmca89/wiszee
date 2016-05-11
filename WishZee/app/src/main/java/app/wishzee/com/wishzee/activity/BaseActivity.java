@@ -40,7 +40,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Response
         super.onStop();
     }
 
-    protected void volleyRequestMethod(String url, final String REQUEST_TAG) {
+    protected void volleyGetRequestMethod(String url, final String REQUEST_TAG) {
         mQueue = CustomVolleyRequestQueue.getInstance(this.getApplicationContext())
                 .getRequestQueue();
 
@@ -48,6 +48,18 @@ public abstract class BaseActivity extends AppCompatActivity implements Response
 
         jsonRequest.setTag(REQUEST_TAG);
 
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy(5000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        mQueue.add(jsonRequest);
+    }
+
+    protected void volleyPostRequestMethod(String url, final String REQUEST_TAG) {
+        mQueue = CustomVolleyRequestQueue.getInstance(this.getApplicationContext())
+                .getRequestQueue();
+        final CustomJSONObjectRequest jsonRequest = new CustomJSONObjectRequest(Request.Method.POST, url, new JSONObject(), this, this);
+        jsonRequest.setTag(REQUEST_TAG);
         jsonRequest.setRetryPolicy(new DefaultRetryPolicy(5000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
