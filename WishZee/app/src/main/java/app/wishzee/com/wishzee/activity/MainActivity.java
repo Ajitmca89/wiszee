@@ -1,29 +1,32 @@
 package app.wishzee.com.wishzee.activity;
 
-import android.app.Activity;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 
 import app.wishzee.com.wishzee.R;
 import app.wishzee.com.wishzee.fragment.BaseFragment;
 import app.wishzee.com.wishzee.fragment.LoginAndSignUpFragment;
-import app.wishzee.com.wishzee.fragment.LoginFragment;
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(getLayoutResourceId());
 
         BaseFragment baseFragment = new LoginAndSignUpFragment();
-
-        FragmentManager fm = getFragmentManager();
+        FragmentManager fm = this.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.container, baseFragment);
+        fragmentTransaction.setCustomAnimations(0, 0, 0, 0);
+
+        fragmentTransaction.add(R.id.container, baseFragment);
         fragmentTransaction.commit();
 
+    }
 
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_main;
     }
 }

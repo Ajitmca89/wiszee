@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +52,8 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         AppCompatButton buttonLogin = (AppCompatButton) view.findViewById(R.id.btn_login);
         AppCompatButton buttonSignUp = (AppCompatButton) view.findViewById(R.id.btn_sign_up);
         TextView txtForgotPass = (TextView) view.findViewById(R.id.forgot_password);
+        ImageView imgFacebook = (ImageView)view.findViewById(R.id.img_facebook);
+        imgFacebook.setOnClickListener(this);
         buttonLogin.setOnClickListener(this);
         buttonSignUp.setOnClickListener(this);
         txtForgotPass.setOnClickListener(this);
@@ -142,7 +145,8 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
 
     private void responseImplement(String response) {
         JSONObject jsonObject = null;
-        String status = null, id = null, socialId = null, msg = null, username = null, phone = null, gender = null, email = null;
+        String status = null, id = null, socialId = null, msg = null,
+                username = null, phone = null, gender = null, email = null;
         try {
             jsonObject = new JSONObject(response);
             if (jsonObject.has("status"))
@@ -164,7 +168,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        if (status.equalsIgnoreCase("true")) {
+        if (status.equals("true") && !TextUtils.isEmpty(status)) {
             fragment = new HomeLauncherFragment();
             saveDataOnPreference(username, phone, gender, email, socialId, id);
             callFragmentMethod(fragment, Constants.LOGIN_TAG);

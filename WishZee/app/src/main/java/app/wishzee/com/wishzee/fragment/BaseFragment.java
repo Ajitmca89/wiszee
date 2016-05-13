@@ -2,12 +2,12 @@ package app.wishzee.com.wishzee.fragment;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.DialogFragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MotionEvent;
@@ -32,7 +32,7 @@ import app.wishzee.com.wishzee.volleycustomrequest.CustomVolleyRequestQueue;
 /**
  * Created by Ajit Gupta on 5/10/2016.
  */
-public abstract class BaseFragment extends DialogFragment implements Response.Listener, Response.ErrorListener {
+public abstract class BaseFragment extends Fragment implements Response.Listener, Response.ErrorListener {
 
     private RequestQueue mQueue;
 
@@ -43,18 +43,12 @@ public abstract class BaseFragment extends DialogFragment implements Response.Li
 
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-
-    }
-
-    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if (getView() != null && savedInstanceState == null) {
+       /* if (getView() != null && savedInstanceState == null) {
             getView().getParent().requestDisallowInterceptTouchEvent(true);
             BaseFragment.disableTouchTheft(getView());
-        }
+        }*/
     }
 
     public static void disableTouchTheft(View view) {
@@ -135,11 +129,10 @@ public abstract class BaseFragment extends DialogFragment implements Response.Li
 
 
     protected void callFragmentMethod(BaseFragment baseFragment, final String TAG) {
-        FragmentManager fm = getFragmentManager();
+        FragmentManager fm = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-            fragmentTransaction.setCustomAnimations(R.animator.enter_anim, 0, 0, R.animator.exit_anim);
-        }
+            fragmentTransaction.setCustomAnimations(0,0,0,0);
+
         fragmentTransaction.add(R.id.container, baseFragment);
         fragmentTransaction.addToBackStack(TAG);
         fragmentTransaction.commit();
