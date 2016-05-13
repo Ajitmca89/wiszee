@@ -8,9 +8,11 @@ public class Constants {
     private static final String BASE_URL = "http://www.intechub.com/webservice/";
     public static final String LOGIN_URL = Constants.BASE_URL + "login.php";
     public static final String REGISTRATION_URL = Constants.BASE_URL + "signup.php";
+    public static final String FORGET_PASSWORD_URL = Constants.BASE_URL + "forget_password.php";
     public static final String LOGIN_TAG = "LoginFragment";
     public static final String REGISTRATION_TAG = "SignUpFragment";
     public static final String LAUNCHER_TAG = "HomeLauncherFragment";
+    public static final String FORGOT_TAG = "ForgotFragment";
     public final static String LOGIN_AND_SIGN_UP_TAG = "LoginAndSignUpFragment";
     public static final String APP_SETTINGS = "APP_SETTINGS";
     public static final String USERNAME = "username";

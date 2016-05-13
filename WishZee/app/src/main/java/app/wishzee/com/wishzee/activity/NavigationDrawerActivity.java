@@ -40,7 +40,7 @@ public class NavigationDrawerActivity extends BaseActivity {
 
         mFragmentManager = getSupportFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
-        mFragmentTransaction.replace(R.id.navigationContainer,new TabBarFragment()).commit();
+        mFragmentTransaction.replace(R.id.navigationContainer, new TabBarFragment()).commit();
     }
 
     private void drawerInitialization() {

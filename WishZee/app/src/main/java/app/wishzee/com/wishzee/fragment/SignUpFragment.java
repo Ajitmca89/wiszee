@@ -31,6 +31,7 @@ import java.util.regex.Pattern;
 import app.wishzee.com.wishzee.R;
 import app.wishzee.com.wishzee.constant.Constants;
 import app.wishzee.com.wishzee.preference.SharedPreferencesManager;
+import app.wishzee.com.wishzee.utility.Utility;
 
 /**
  * Created by Ajit Gupta on 5/10/2016.
@@ -175,7 +176,7 @@ public class SignUpFragment extends BaseFragment implements View.OnClickListener
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        if (status.equalsIgnoreCase("true")) {
+        if (status.equalsIgnoreCase("true") && !status.isEmpty()) {
             fragment = new HomeLauncherFragment();
             saveDataOnPreference(username, phone, gender, email, userid);
             Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
@@ -200,7 +201,7 @@ public class SignUpFragment extends BaseFragment implements View.OnClickListener
             etFullName.setError("Please enter your name");
             etFullName.requestFocus();
             return false;
-        } else if (!isEmailValid(email)) {
+        } else if (! Utility.isEmailValid(email)) {
             etEmail.setError("Please enter valid Email id");
             etEmail.requestFocus();
             return false;
@@ -215,18 +216,6 @@ public class SignUpFragment extends BaseFragment implements View.OnClickListener
         } else {
             return true;
         }
-    }
-
-    public boolean isEmailValid(String email) {
-        boolean isValid = false;
-        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-        CharSequence inputStr = email;
-        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(inputStr);
-        if (matcher.matches()) {
-            isValid = true;
-        }
-        return isValid;
     }
 
     @Override

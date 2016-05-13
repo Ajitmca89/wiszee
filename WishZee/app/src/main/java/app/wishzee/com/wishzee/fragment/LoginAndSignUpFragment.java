@@ -28,7 +28,6 @@ public class LoginAndSignUpFragment extends BaseFragment implements View.OnClick
     }
 
     private void initialize(View view) {
-
         relLogin = (RelativeLayout) view.findViewById(R.id.rel_login);
         relSignUp = (RelativeLayout) view.findViewById(R.id.rel_sign_up);
         relLogin.setOnClickListener(this);

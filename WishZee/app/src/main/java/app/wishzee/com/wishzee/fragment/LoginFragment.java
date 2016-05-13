@@ -68,6 +68,12 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     }
 
     @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        disableTouchOfBackFragment(savedInstanceState);
+    }
+
+    @Override
     protected int getFragmentLayout() {
         return R.layout.login_layout;
     }
@@ -168,6 +174,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         if (status.equals("true") && !TextUtils.isEmpty(status)) {
             fragment = new HomeLauncherFragment();
             saveDataOnPreference(username, phone, gender, email, socialId, id);

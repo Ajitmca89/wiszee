@@ -45,10 +45,13 @@ public abstract class BaseFragment extends Fragment implements Response.Listener
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-       /* if (getView() != null && savedInstanceState == null) {
+    }
+
+    public void disableTouchOfBackFragment(Bundle savedInstanceState) {
+        if (getView() != null && savedInstanceState == null) {
             getView().getParent().requestDisallowInterceptTouchEvent(true);
             BaseFragment.disableTouchTheft(getView());
-        }*/
+        }
     }
 
     public static void disableTouchTheft(View view) {
@@ -131,7 +134,7 @@ public abstract class BaseFragment extends Fragment implements Response.Listener
     protected void callFragmentMethod(BaseFragment baseFragment, final String TAG) {
         FragmentManager fm = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
-            fragmentTransaction.setCustomAnimations(0,0,0,0);
+        fragmentTransaction.setCustomAnimations(0, 0, 0, 0);
 
         fragmentTransaction.add(R.id.container, baseFragment);
         fragmentTransaction.addToBackStack(TAG);
