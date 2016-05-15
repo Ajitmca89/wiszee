@@ -42,8 +42,6 @@ public class ForgotPasswordFragment extends BaseFragment implements View.OnClick
         View view = inflater.inflate(getFragmentLayout(), container, false);
 
         initialize(view);
-        
-
         return view;
     }
 

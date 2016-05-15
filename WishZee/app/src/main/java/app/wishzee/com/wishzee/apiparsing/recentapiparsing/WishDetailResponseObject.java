@@ -1,15 +1,14 @@
 package app.wishzee.com.wishzee.apiparsing.recentapiparsing;
 
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.PushbackInputStream;
 import java.util.ArrayList;
-import java.util.Objects;
 
-import app.wishzee.com.wishzee.apiparsing.ApiBaseData;
+import app.wishzee.com.wishzee.apiparsing.base.ApiBaseData;
+import app.wishzee.com.wishzee.apiparsing.publicfeed.PublicNotificationDetails;
 
 /**
  * Created by Ajit Gupta on 5/4/2016.
@@ -26,10 +25,9 @@ public class WishDetailResponseObject extends ApiBaseData {
         this.wishDetailsArrayList = wishDetailsArrayList;
     }
 
-    WishDetailResponseObject wishDetailResponseObject;
 
     public void responseParseMethod(Object response) {
-        wishDetailResponseObject = new WishDetailResponseObject();
+        WishDetailResponseObject wishDetailResponseObject = new WishDetailResponseObject();
         try {
             JSONObject jsonObject = new JSONObject(response.toString());
             wishDetailResponseObject.setMsg(jsonObject.optString("msg"));
@@ -40,11 +38,10 @@ public class WishDetailResponseObject extends ApiBaseData {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
 
     private ArrayList<WishDetails> getWishDetailInMethod(JSONArray jsonArray) {
-        wishDetailsArrayList = new ArrayList<>();
+        ArrayList<WishDetails> wishDetailsArrayList = new ArrayList<>();
         for (int i = 0; i < jsonArray.length(); i++) {
             WishDetails wishDetails = new WishDetails();
             JSONObject jsonObject = jsonArray.optJSONObject(i);
@@ -64,6 +61,14 @@ public class WishDetailResponseObject extends ApiBaseData {
                 wishDetails.setCreateDate(jsonObject.optString("createDate"));
             if (jsonObject.has("postDate"))
                 wishDetails.setPostDate(jsonObject.optString("postDate"));
+            if (jsonObject.has("wishExpireDate"))
+                wishDetails.setWishExpireDate(jsonObject.optString("wishExpireDate"));
+            if (jsonObject.has("exphours"))
+                wishDetails.setExpHours(jsonObject.optString("exphours"));
+            if (jsonObject.has("expminutes"))
+                wishDetails.setExpMinutes("expminutes");
+            if (jsonObject.has("expseconds"))
+                wishDetails.setExpSeconds(jsonObject.optString("expseconds"));
             if (jsonObject.has("share"))
                 wishDetails.setShare(jsonObject.optString("share"));
             if (jsonObject.has("wow"))
@@ -82,11 +87,22 @@ public class WishDetailResponseObject extends ApiBaseData {
                 wishDetails.setUserDetails(getUserDetailsMethod(jsonObject.optJSONObject("userDetail")));
             if (jsonObject.has("notificationDetail"))
                 wishDetails.setNotificationDetails(getNotificationDetailsMethod(jsonObject.optJSONObject("notificationDetail")));
-            if (jsonObject.has("postimage")) {
+            if (jsonObject.has("postimage"))
                 wishDetails.setPostImageArrayList(getPostImageMethod(jsonObject.optJSONArray("postimage")));
-            }
+            if (jsonObject.has("notificationDetail"))
+                wishDetails.setPublicNotificationDetails(getPublicNotificationMethod(jsonObject.optJSONObject("notificationDetail")));
         }
         return wishDetailsArrayList;
+    }
+
+    private PublicNotificationDetails getPublicNotificationMethod(JSONObject notificationDetail) {
+        PublicNotificationDetails publicNotificationDetails = new PublicNotificationDetails();
+        if (notificationDetail.has("status"))
+            publicNotificationDetails.setStatus(notificationDetail.optString("status"));
+        if (notificationDetail.has("Detail"))
+            publicNotificationDetails.setNotificationDetails(getNotificationDetailsMethod(notificationDetail.optJSONObject("Detail")));
+
+        return publicNotificationDetails;
     }
 
     private ArrayList<PostImage> getPostImageMethod(JSONArray jsonArray) {
@@ -146,4 +162,5 @@ public class WishDetailResponseObject extends ApiBaseData {
 
         return userDetails;
     }
+
 }

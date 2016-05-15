@@ -1,4 +1,4 @@
-package app.wishzee.com.wishzee.apiparsing;
+package app.wishzee.com.wishzee.apiparsing.base;
 
 /**
  * Created by Ajit Gupta on 5/4/2016.

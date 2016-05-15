@@ -26,8 +26,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/img_profile"
+                <com.android.volley.toolbox.NetworkImageView
+                    android:id="@+id/imgUser"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_marginRight="8dp"
@@ -37,9 +37,10 @@
                     android:id="@+id/rel_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/img_profile">
+                    android:layout_toRightOf="@+id/imgUser">
 
                     <TextView
+                        android:id="@+id/txtName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -48,6 +49,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/txtDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -56,13 +58,15 @@
                 </RelativeLayout>
 
                 <TextView
+                    android:id="@+id/txtDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/rel_layout"
                     android:layout_marginTop="4dp"
-                    android:layout_toRightOf="@+id/img_profile"
+                    android:layout_toRightOf="@+id/imgUser"
                     android:ellipsize="end"
                     android:maxLines="2"
+                    android:lines="2"
                     android:text="Anyone Interested for civil war movie" />
             </RelativeLayout>
 
@@ -74,6 +78,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtWow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.25"
@@ -83,6 +88,7 @@
 
 
                 <TextView
+                    android:id="@+id/txtGossip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.25"
@@ -91,6 +97,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/txtShare"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.25"
@@ -99,6 +106,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/txtImages"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.25"
@@ -121,6 +129,7 @@
                     android:weightSum="2">
 
                     <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/btnFullFill"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="4dp"
@@ -146,6 +155,7 @@
                 </LinearLayout>
 
                 <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btnFullShow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/holo_purple"
@@ -156,6 +166,7 @@
                     tools:ignore="NewApi" />
 
                 <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btnFullFilled"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/holo_green_dark"

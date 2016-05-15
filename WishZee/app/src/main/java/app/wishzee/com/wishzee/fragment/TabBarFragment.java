@@ -49,9 +49,9 @@ public class TabBarFragment extends BaseFragment {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new MyFeedFragment(), "My Feed");
-        adapter.addFragment(new MyCornerFragment(), "My Corner");
         adapter.addFragment(new PublicFeedFragment(), "Public");
+        adapter.addFragment(new MyCornerFragment(), "My Corner");
+        adapter.addFragment(new MyFeedFragment(), "Public");
         adapter.addFragment(new PrivateFeedFragment(), "Private");
         viewPager.setAdapter(adapter);
     }

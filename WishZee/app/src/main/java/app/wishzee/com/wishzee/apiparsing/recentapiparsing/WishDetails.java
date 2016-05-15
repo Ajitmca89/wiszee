@@ -2,6 +2,8 @@ package app.wishzee.com.wishzee.apiparsing.recentapiparsing;
 
 import java.util.ArrayList;
 
+import app.wishzee.com.wishzee.apiparsing.publicfeed.PublicNotificationDetails;
+
 /**
  * Created by Ajit Gupta on 5/4/2016.
  */
@@ -15,6 +17,10 @@ public class WishDetails {
     private String friendId;
     private String createDate;
     private String postDate;
+    private String wishExpireDate;
+    private String expHours;
+    private String expMinutes;
+    private String expSeconds;
     private String share;
     private String wow;
     private String wowStatus;
@@ -22,7 +28,9 @@ public class WishDetails {
     private String sillyStatus;
     private String comment;
     private String fulfill;
+    private String fulFillPendingRequest;
     private UserDetails userDetails;
+    private PublicNotificationDetails publicNotificationDetails;
     private NotificationDetails notificationDetails;
     private ArrayList<PostImage> postImageArrayList;
 
@@ -168,5 +176,53 @@ public class WishDetails {
 
     public void setPostImageArrayList(ArrayList<PostImage> postImageArrayList) {
         this.postImageArrayList = postImageArrayList;
+    }
+
+    public String getWishExpireDate() {
+        return wishExpireDate;
+    }
+
+    public void setWishExpireDate(String wishExpireDate) {
+        this.wishExpireDate = wishExpireDate;
+    }
+
+    public String getExpHours() {
+        return expHours;
+    }
+
+    public void setExpHours(String expHours) {
+        this.expHours = expHours;
+    }
+
+    public String getExpMinutes() {
+        return expMinutes;
+    }
+
+    public void setExpMinutes(String expMinutes) {
+        this.expMinutes = expMinutes;
+    }
+
+    public String getExpSeconds() {
+        return expSeconds;
+    }
+
+    public void setExpSeconds(String expSeconds) {
+        this.expSeconds = expSeconds;
+    }
+
+    public String getFulFillPendingRequest() {
+        return fulFillPendingRequest;
+    }
+
+    public void setFulFillPendingRequest(String fulFillPendingRequest) {
+        this.fulFillPendingRequest = fulFillPendingRequest;
+    }
+
+    public PublicNotificationDetails getPublicNotificationDetails() {
+        return publicNotificationDetails;
+    }
+
+    public void setPublicNotificationDetails(PublicNotificationDetails publicNotificationDetails) {
+        this.publicNotificationDetails = publicNotificationDetails;
     }
 }

@@ -10,6 +10,8 @@ public class Constants {
     public static final String REGISTRATION_URL = Constants.BASE_URL + "signup.php";
     public static final String FORGET_PASSWORD_URL = Constants.BASE_URL + "forget_password.php";
     public static final String LOGIN_TAG = "LoginFragment";
+    public static final String PUBLIC_FEED= "PublicFragment";
+    public static final String HOME_POST_LIST = Constants.BASE_URL + "homePostList.php";
     public static final String REGISTRATION_TAG = "SignUpFragment";
     public static final String LAUNCHER_TAG = "HomeLauncherFragment";
     public static final String FORGOT_TAG = "ForgotFragment";
